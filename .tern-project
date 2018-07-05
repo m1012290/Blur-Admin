@@ -1,0 +1,41 @@
+{
+  "ecmaVersion": 5,
+  "ide": {
+    "scriptPaths": [
+      {
+        "type": "FOLDER",
+        "path": "src"
+      }
+    ]
+  },
+  "plugins": {
+    "guess-types": {
+      
+    },
+    "outline": {
+      
+    },
+    "node": {
+      
+    },
+    "eslint": {
+      
+    },
+    "webpack": {
+      
+    },
+    "angular1": {
+      
+    },
+    "closure": {
+      
+    },
+    "bootstrap": {
+      
+    }
+  },
+  "libs": [
+    "browser",
+    "jquery"
+  ]
+}

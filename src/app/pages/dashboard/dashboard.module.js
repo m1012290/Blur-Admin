@@ -10,6 +10,7 @@
 
   /** @ngInject */
   function routeConfig($stateProvider) {
+    //var urlMatcher = $urlMatcherFactory.compile("/auth.html#/dashboard");
     $stateProvider
         .state('dashboard', {
           url: '/dashboard',

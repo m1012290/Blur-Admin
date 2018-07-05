@@ -32,8 +32,7 @@
     </thead>
     <tbody>
     <tr ng-repeat="item in smartTableData">
-      <td class="table-id">{{item.id}}</td>
-      <td>{{item.ruleId}}</td>
+      <td class="table-id">{{item.ruleId}}</td>
       <td>{{item.tranId}}</td>
       <td>{{item.tranDate}}</td>
       <td>{{item.deviceId}}</td>
@@ -42,7 +41,7 @@
     </tbody>
     <tfoot>
     <tr>
-      <td colspan="5" class="text-center">
+      <td colspan="6" class="text-center">
         <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
       </td>
     </tr>

@@ -1,0 +1,60 @@
+<div class="horizontal-scroll">
+  <div class="form-group select-page-size-wrap ">
+    <label>Rows on page
+      <select class="form-control selectpicker show-tick" title="Rows on page" selectpicker
+              ng-model="smartTablePageSize" ng-options="i for i in [5,10,15,20,25]">
+      </select>
+    </label>
+  </div>
+  <table class="table" st-table="AllTxnData">
+    <thead>
+    <tr class="sortable ">
+      <th class="table-id" st-sort="id" st-sort-default="true">#</th>
+      <th st-sort="tranId">Tran Id</th>
+      <th st-sort="tranDate">Tran Date</th>
+      <th st-sort="tranAmt">Tran Amt</th>
+      <th st-sort="acctNo">Account No</th>
+      <th st-sort="tranType">Tran Type</th>
+      <th st-sort="tranStatus">Tran Status</th>
+      <th st-sort="payeeAcct">Payee Account</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th><input st-search="tranId" placeholder="Search Tran Id" class="input-sm form-control search-input"
+                 type="search"/></th>
+      <th><input st-search="tranDate" placeholder="Search Tran Date" class="input-sm form-control search-input"
+                 type="search"/></th>
+      <th><input st-search="tranAmt" placeholder="Search Tran Amt" class="input-sm form-control search-input"
+                 type="search"/></th>
+      <th><input st-search="acctNo" placeholder="Search Account No" class="input-sm form-control search-input" type="search"/>
+      </th>
+      <th><input st-search="tranType" placeholder="Search Tran Type" class="input-sm form-control search-input" type="search"/>
+      </th>
+      <th><input st-search="tranStatus" placeholder="Search Tran Status" class="input-sm form-control search-input" type="search"/>
+      </th>
+          <th><input st-search="payeeAcct" placeholder="Search Payee Account" class="input-sm form-control search-input" type="search"/>
+      </th>
+      
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="item in AllTxnData">
+      <td class="table-id">{{item.id}}</td>
+      <td>{{item.tranId}}</td>
+      <td>{{item.tranDate}}</td>
+      <td>{{item.tranAmt}}</td>
+      <td>{{item.acctNo}}</td>
+      <td>{{item.tranType}}</td>
+      <td>{{item.tranStatus}}</td>
+      <td>{{item.payeeAcct}}</td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+      <td colspan="7" class="text-center">
+        <div st-pagination="" st-items-by-page="smartTablePageSize" st-displayed-pages="5"></div>
+      </td>
+    </tr>
+    </tfoot>
+  </table>
+</div>

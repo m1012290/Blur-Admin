@@ -6,12 +6,54 @@
   'use strict';
 
   angular.module('BlurAdmin.pages.tables')
-      .controller('TablesPageCtrl', TablesPageCtrl);
+      .controller('TablesPageCtrl', TablesPageCtrl)
+      .service('TransactionService',TransactionService);
+
+  function TransactionService($q,$resource,$timeout){
+    return {
+      fetchSuspiciousTxn : function(){
+          var deferred = $q.defer();
+          var resource = $resource("http://localhost:8080/api/suspicious",{query: { method: 'GET', isArray: true }});
+          resource.query(function(data){
+             deferred.resolve(data);
+          },function(err){
+             deferred.reject(err);
+          });
+          return deferred.promise;
+      },
+
+      fetchAllTransactions : function(){
+          var deferred = $q.defer();
+          var resource = $resource("http://localhost:8080/api/transactionDetails",{query: { method: 'GET', isArray: true }});
+          resource.query(function(data){
+             deferred.resolve(data);
+          },function(err){
+             deferred.reject(err);
+          });
+          return deferred.promise;  
+      }
+
+   }
+
+  }
 
   /** @ngInject */
-  function TablesPageCtrl($scope, $filter, editableOptions, editableThemes) {
+  function TablesPageCtrl($scope, $filter, editableOptions, editableThemes, TransactionService, $timeout) {
 
     $scope.smartTablePageSize = 10;
+
+          /*TransactionService.fetchSuspiciousTxn().then(function(data){
+            $scope.smartTableData = angular.fromJson(data);
+            console.log('$scope.smartTableData'+$scope.smartTableData);
+            $timeout(function(){
+                $scope.$apply();
+            },0);
+
+          }).catch(function(err){
+            console.log('error calling TransactionService');
+          });*/
+
+    /*
 
     $scope.smartTableData = [
       {
@@ -495,9 +537,9 @@
         "age": 16
       }
     ];
-
-    $scope.editableTableData = $scope.smartTableData.slice(0, 36);
-
+    
+  $scope.editableTableData = $scope.smartTableData.slice(0, 36);
+  */
     $scope.peopleTableData = [
       {
         id: 1,

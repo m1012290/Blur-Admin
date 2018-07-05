@@ -2,6 +2,7 @@
 
 angular.module('BlurAdmin', [
   'ngAnimate',
+  'ngResource',
   'ui.bootstrap',
   'ui.sortable',
   'ui.router',
@@ -16,3 +17,4 @@ angular.module('BlurAdmin', [
   'BlurAdmin.theme',
   'BlurAdmin.pages'
 ]);
+

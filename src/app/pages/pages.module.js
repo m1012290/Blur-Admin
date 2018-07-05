@@ -7,7 +7,6 @@
 
   angular.module('BlurAdmin.pages', [
     'ui.router',
-
     'BlurAdmin.pages.dashboard',
     'BlurAdmin.pages.ui',
     'BlurAdmin.pages.components',
@@ -16,22 +15,26 @@
     'BlurAdmin.pages.charts',
     'BlurAdmin.pages.maps',
     'BlurAdmin.pages.profile',
+    'BlurAdmin.pages.signin'
   ])
       .config(routeConfig);
 
   /** @ngInject */
-  function routeConfig($stateProvider, $urlRouterProvider, baSidebarServiceProvider) {
-	   $stateProvider
-       .state('signin', {
-         url: '/signin',
-         templateUrl: '/app/pages/signin/auth.html',
-         title: 'Sign In',
-         sidebarMeta: {
-           icon: 'ion-android-home',
-           order: 0,
-         },
-       });
-    $urlRouterProvider.otherwise('/signin');
+  function routeConfig($urlRouterProvider, baSidebarServiceProvider) {
+	   $urlRouterProvider.otherwise('/signin');
+     //$urlRouterProvider.when('/dashboard','/dashboard');
+    $urlRouterProvider.rule(function ($injector, $location) {
+        console.log('$urlrouteprovider as is ['+ $location.path() +']');
+       //what this function returns will be set as the $location.url
+        var path = $location.path(), normalized = path.toLowerCase();
+
+        if (path != normalized) {
+            //instead of returning a new url string, I'll just change the $location.path directly so I don't have to worry about constructing a new url string and so a new state change is not triggered
+            $location.replace().path();
+        }
+        // because we've returned nothing, no state change occurs
+    });
+    //$urlRouterProvider.otherwise('/signin');
     /*
     baSidebarServiceProvider.addStaticItem({
       title: 'Pages',
